@@ -1,8 +1,13 @@
+#ifndef DYNAMIC_BITSET_HPP
+#define DYNAMIC_BITSET_HPP
+
 #include <vector>
 #include <cstring>
 #include <cstdint>
 #include <iostream>
 #include <algorithm>
+
+namespace sjtu {
 
 struct dynamic_bitset {
 private:
@@ -350,3 +355,7 @@ public:
         return *this;
     }
 };
+
+}  // namespace sjtu
+
+#endif  // DYNAMIC_BITSET_HPP
