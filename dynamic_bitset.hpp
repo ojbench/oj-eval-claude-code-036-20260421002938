@@ -42,9 +42,7 @@ public:
     dynamic_bitset &operator = (const dynamic_bitset &) = default;
 
     // 初始化 bitset 的大小为 n ，且全为 0.
-    dynamic_bitset(std::size_t n) : bit_size(n) {
-        std::size_t blocks = num_blocks();
-        data.resize(blocks, 0);
+    dynamic_bitset(std::size_t n) : bit_size(n), data((n + BITS_PER_BLOCK - 1) / BITS_PER_BLOCK, 0) {
     }
 
     /**
@@ -56,10 +54,7 @@ public:
      * a 的第 2 位是 1
      * a 的第 3 位是 0
      */
-    dynamic_bitset(const std::string &str) : bit_size(str.size()) {
-        std::size_t blocks = num_blocks();
-        data.resize(blocks, 0);
-
+    dynamic_bitset(const std::string &str) : bit_size(str.size()), data((str.size() + BITS_PER_BLOCK - 1) / BITS_PER_BLOCK, 0) {
         for (std::size_t i = 0; i < str.size(); ++i) {
             if (str[i] == '1') {
                 std::size_t block_idx = i / BITS_PER_BLOCK;
